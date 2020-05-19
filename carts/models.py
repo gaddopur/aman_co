@@ -4,7 +4,7 @@ from products.models import Product, ProductVariation
 
 class CartItem(models.Model):
     cart = models.ForeignKey("Cart", on_delete=models.CASCADE, blank=True, null=True)
-    product = models.ForeignKey(Product, null=True, blank=True, on_delete=models.SET_NULL)
+    product = models.ForeignKey(Product, null=True, blank=True, on_delete=models.CASCADE)
     variation = models.ManyToManyField(ProductVariation)
     notes = models.TextField(null=True, blank=True)
     quantity = models.IntegerField(default=1)
