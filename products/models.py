@@ -1,3 +1,4 @@
+from django.urls import reverse
 from django.db import models
 
 # Create your models here.
@@ -17,9 +18,12 @@ class Product(models.Model):
     def __str__(self):
         return self.title
 
+    def get_absolute_url(self):
+        return reverse("products:product_detail", kwargs={"slug":  self.slug})
+
 class ProductImage(models.Model):
     product = models.ForeignKey(Product, on_delete='CASCADE')
-    image = models.ImageField(upload_to='products/images', null=True)
+    image = models.ImageField(upload_to='products/images', default="products/images/default.png")
     featured = models.BooleanField(default=False)
     thumbnail = models.BooleanField(default=False)
     active = models.BooleanField(default=True)
@@ -27,3 +31,27 @@ class ProductImage(models.Model):
 
     def __str__(self):
         return self.product.title
+
+class ProductVariationManager(models.Manager):
+    def all(self):
+        return super(ProductVariationManager, self).filter(active=True)
+    def sizes(self):
+        return self.all().filter(category='size')
+    def colors(self):
+        return self.all().filter(category='color')
+
+
+VAR_CATEGORIES = (
+    ('size', 'size'),
+    ('color', 'color'),
+)
+
+class ProductVariation(models.Model):
+    products = models.ForeignKey(Product, on_delete=models.CASCADE)
+    active = models.BooleanField(default=True)
+    title = models.CharField(max_length=100)
+    category = models.CharField(max_length=100, choices=VAR_CATEGORIES)
+    objects = ProductVariationManager()
+
+    def __str__(self):
+        return self.title

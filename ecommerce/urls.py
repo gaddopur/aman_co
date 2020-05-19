@@ -9,7 +9,9 @@ from .import views
 urlpatterns = [
     path('admin/', admin.site.urls),
     url(r'^$', views.home, name="home"),
+    url(r'^search/$', views.search, name="search"),
     url(r'^products/', include('products.urls')),
+    url(r'^carts/', include('carts.urls')),
 ]
 
 if settings.DEBUG:
