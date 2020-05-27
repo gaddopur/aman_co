@@ -28,7 +28,6 @@ def remove_from_cart(request, id):
         cart.total = 0
         for item in cart.cartitem_set.all():
             cart.total += item.product.price*item.quantity
-        request.session['items_count'] = cart.cartitem_set.count()
         cart.save()
     return redirect("carts:carts")
 

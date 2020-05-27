@@ -22,7 +22,7 @@ class Product(models.Model):
         return reverse("products:product_detail", kwargs={"slug":  self.slug})
 
 class ProductImage(models.Model):
-    product = models.ForeignKey(Product, on_delete='CASCADE')
+    product = models.ForeignKey(Product, models.CASCADE)
     image = models.ImageField(upload_to='products/images', default="products/images/default.png")
     featured = models.BooleanField(default=False)
     thumbnail = models.BooleanField(default=False)

@@ -19,7 +19,7 @@ class Migration(migrations.Migration):
                 ('thumbnail', models.BooleanField(default=False)),
                 ('active', models.BooleanField(default=True)),
                 ('update', models.DateTimeField(auto_now=True)),
-                ('product', models.ForeignKey(on_delete='CASCADE', to='products.Product')),
+                ('product', models.ForeignKey(on_delete=models.CASCADE, to='products.Product')),
             ],
         ),
     ]

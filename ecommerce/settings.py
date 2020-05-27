@@ -27,7 +27,6 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
-
 # Application definition
 
 INSTALLED_APPS = [
@@ -39,6 +38,9 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'products',
     'carts',
+    'accounts',
+    'crispy_forms',
+    'CheckOut',
 ]
 
 MIDDLEWARE = [
@@ -128,5 +130,9 @@ MEDIA_ROOT = os.path.join(BASE_DIR, "static", "media")
 STATIC_ROOT = os.path.join(BASE_DIR, "static", "static_root")
 
 STATICFILES_DIRS = (
-    os.path.join(BASE_DIR, "static", "static_files"),
+    os.path.join(BASE_DIR, "static"),
 )
+
+CRISPY_TEMPLATE_PACK = 'bootstrap4'
+LOGIN_REDIRECT_URL = 'home'
+LOGIN_URL = 'login'
