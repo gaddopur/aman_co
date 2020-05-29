@@ -18,6 +18,7 @@ urlpatterns = [
     path('logout/', auth_views.LogoutView.as_view(template_name='accounts/logout.html'), name='logout'),
     path('profile/', account_views.profile_view, name="profile"),
     path('signup/', account_views.signup_view, name="signup"),
+    path('check_for_sell/', account_views.check_for_selling, name="check"),
 ]
 
 if settings.DEBUG:

@@ -1,5 +1,7 @@
 from django.db import models
 from products.models import Product, ProductVariation
+
+
 # Create your models here.
 
 class CartItem(models.Model):
@@ -12,6 +14,7 @@ class CartItem(models.Model):
     def __str__(self):
         return self.product.title
 
+
 class Cart(models.Model):
     # items = models.ManyToManyField(CartItem)
     # products = models.ManyToManyField(Product)
@@ -21,4 +24,4 @@ class Cart(models.Model):
 
     def __str__(self):
         # return "%s" %(self.id)
-        return "Cart id: %s" %(self.id)
+        return "Cart id: %s" % (self.id)

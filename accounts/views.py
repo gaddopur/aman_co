@@ -3,7 +3,7 @@ from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth import login, logout
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
-from .forms import UserRegisterForm, UserUpdateForm, ProfileUpdateForm
+from .forms import UserRegisterForm, UserUpdateForm, ProfileUpdateForm, sell_check_form
 
 
 # Create your views here.
@@ -15,7 +15,6 @@ def signup_view(request):
             messages.success(request, f'Account is created for {username}!')
             user = form.save()
             login(request, user)
-            # log in the user
             return redirect("home")
     else:
         form = UserRegisterForm()
@@ -41,3 +40,16 @@ def profile_view(request):
         'p_form': p_form
     }
     return render(request, 'accounts/profile.html', context)
+
+
+def check_for_selling(request):
+    if request.method == 'POST':
+        request.user.is_staff = True
+        request.user.save()
+        return redirect('profile')
+    else:
+        s_form = sell_check_form()
+    context = {
+        's_form': s_form
+    }
+    return render(request, 'accounts/check_for_sell.html', context)

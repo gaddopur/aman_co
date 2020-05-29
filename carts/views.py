@@ -1,6 +1,8 @@
 from django.shortcuts import render, redirect
 from .models import Cart, CartItem
 from products.models import Product, ProductVariation
+
+
 # Create your views here.
 
 def carts_views(request):
@@ -16,6 +18,7 @@ def carts_views(request):
     templates = "carts/carts_view.html"
     return render(request, templates, context)
 
+
 def remove_from_cart(request, id):
     try:
         the_id = request.session['cart_id']
@@ -27,9 +30,10 @@ def remove_from_cart(request, id):
         cart_item.delete()
         cart.total = 0
         for item in cart.cartitem_set.all():
-            cart.total += item.product.price*item.quantity
+            cart.total += item.product.price * item.quantity
         cart.save()
     return redirect("carts:carts")
+
 
 def add_to_cart(request, slug):
     request.session.set_expiry(300)
@@ -68,7 +72,7 @@ def add_to_cart(request, slug):
             cart_item.save()
             cart.total = 0
             for item in cart.cartitem_set.all():
-                cart.total += item.product.price*item.quantity
+                cart.total += item.product.price * item.quantity
 
             cart.save()
             request.session['items_count'] = cart.cartitem_set.count()

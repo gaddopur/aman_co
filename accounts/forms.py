@@ -27,3 +27,7 @@ class ProfileUpdateForm(forms.ModelForm):
     class Meta:
         model = Profile
         fields = ['location', 'address', 'image']
+
+
+class sell_check_form(forms.Form):
+    email = forms.EmailField()

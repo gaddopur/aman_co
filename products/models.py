@@ -1,6 +1,7 @@
 from django.urls import reverse
 from django.db import models
 
+
 # Create your models here.
 
 class Product(models.Model):
@@ -19,7 +20,8 @@ class Product(models.Model):
         return self.title
 
     def get_absolute_url(self):
-        return reverse("products:product_detail", kwargs={"slug":  self.slug})
+        return reverse("products:product_detail", kwargs={"slug": self.slug})
+
 
 class ProductImage(models.Model):
     product = models.ForeignKey(Product, models.CASCADE)
@@ -32,11 +34,14 @@ class ProductImage(models.Model):
     def __str__(self):
         return self.product.title
 
+
 class ProductVariationManager(models.Manager):
     def all(self):
         return super(ProductVariationManager, self).filter(active=True)
+
     def sizes(self):
         return self.all().filter(category='size')
+
     def colors(self):
         return self.all().filter(category='color')
 
@@ -45,6 +50,7 @@ VAR_CATEGORIES = (
     ('size', 'size'),
     ('color', 'color'),
 )
+
 
 class ProductVariation(models.Model):
     products = models.ForeignKey(Product, on_delete=models.CASCADE)
