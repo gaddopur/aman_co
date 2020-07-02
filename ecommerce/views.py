@@ -24,3 +24,7 @@ def search(request):
         products = Product.objects.all().order_by('update')
         context = {'products': products}
     return render(request, template, context)
+
+
+def about(request):
+    return render(request, 'about.html')

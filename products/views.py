@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from .models import Product
 
+
 # Create your views here.
 
 def products_list(request):
@@ -8,6 +9,7 @@ def products_list(request):
     context = {'products': products}
     template = 'products/products.html'
     return render(request, template, context)
+
 
 def product_detail(request, slug):
     product = Product.objects.get(slug=slug)

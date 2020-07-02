@@ -19,6 +19,8 @@ urlpatterns = [
     path('profile/', account_views.profile_view, name="profile"),
     path('signup/', account_views.signup_view, name="signup"),
     path('check_for_sell/', account_views.check_for_selling, name="check"),
+    path('profileupdate/', account_views.profile_update, name="profile_update"),
+    path('about/', views.about, name="about")
 ]
 
 if settings.DEBUG:

@@ -13,11 +13,11 @@ Welcome to Products {{product.title}}
       {% if pimage.featured %}
       <img class="img-thumbnail" src="{{pimage.image.url}}" alt="item-image">
       {% else %}
-      <img class="img-thumbnail" src={% static 'img/default.png'%} alt="item-image">
+      <img class="img-thumbnail" src="{% static 'img/default.png'%}" alt="item-image">
       {% endif %}
       {% endfor %}
       {% else %}
-      <img class="img-thumbnail" src={% static 'img/default.png'%} alt="item-image">
+      <img class="img-thumbnail" src="{% static 'img/default.png' %}" alt="item-image">
       {% endif %}
       <hr/>
     </div>

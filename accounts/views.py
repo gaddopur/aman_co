@@ -22,7 +22,7 @@ def signup_view(request):
 
 
 @login_required(login_url="login/")
-def profile_view(request):
+def profile_update(request):
     if request.method == 'POST':
         u_form = UserUpdateForm(request.POST, instance=request.user)
         p_form = ProfileUpdateForm(request.POST, request.FILES, instance=request.user.profile)
@@ -39,7 +39,11 @@ def profile_view(request):
         'u_form': u_form,
         'p_form': p_form
     }
-    return render(request, 'accounts/profile.html', context)
+    return render(request, 'accounts/profile_update.html', context)
+
+
+def profile_view(request):
+    return render(request, 'accounts/profile.html')
 
 
 def check_for_selling(request):
